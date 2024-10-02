@@ -75,6 +75,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const matchSchedule = document.getElementById('match-schedule').querySelector('tbody');
     const standings = document.getElementById('team-standings').querySelector('tbody');
     const liveFeed = document.getElementById('live-updates');
+    const confettiContainer = document.getElementById('confetti');
 
     function shuffle(array) {
         for (let i = array.length - 1; i > 0; i--) {
@@ -83,10 +84,9 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // Updated generateResult with home advantage logic
     function generateResult(match) {
-        let goalsTeam1 = Math.random() * 100 < 52.5 ? Math.floor(Math.random() * 4) : Math.floor(Math.random() * 3); 
-        let goalsTeam2 = Math.floor(Math.random() * 4); 
+        let goalsTeam1 = Math.floor(Math.random() * 6); 
+        let goalsTeam2 = Math.floor(Math.random() * 6); 
 
         match.result = `${goalsTeam1} - ${goalsTeam2}`;
 
@@ -124,10 +124,14 @@ document.addEventListener('DOMContentLoaded', () => {
     function updateStandings() {
         standings.innerHTML = '';
         teamScores.sort((a, b) => b.points - a.points);
-
-        teamScores.forEach(team => {
+    
+        teamScores.forEach((team, index) => {
             let row = `<tr>
-                        <td><img src="images/${teamLogos[team.name]}" alt="${team.name}" class="team-logo"> ${team.name}</td>
+                        <td class="ranking">${index + 1}.</td>
+                        <td class="team-info">
+                            <img src="images/${teamLogos[team.name]}" alt="${team.name}" class="team-logo"> 
+                            ${team.name}
+                        </td>
                         <td>${team.won}</td>
                         <td>${team.drawn}</td>
                         <td>${team.lost}</td>
@@ -135,6 +139,29 @@ document.addEventListener('DOMContentLoaded', () => {
                        </tr>`;
             standings.innerHTML += row;
         });
+    
+        // Trigger confetti effect if all matches are completed
+        if (teamScores.every(team => team.points > 0)) {
+            showConfetti();
+        }
+    }       
+
+    function showConfetti() {
+        // Show confetti effect
+        confettiContainer.style.display = 'block';
+        setTimeout(() => {
+            confettiContainer.style.display = 'none';
+
+            // Get winning team
+            const winner = teamScores[0];
+            const winnerMessage = document.getElementById('winner-message');
+            winnerMessage.innerHTML = `<img src="images/${teamLogos[winner.name]}" alt="${winner.name}" class="team-logo"> ${winner.name} is the winner!`;
+            winnerMessage.style.display = 'block';
+
+            setTimeout(() => {
+                winnerMessage.style.display = 'none';
+            }, 5000);
+        }, 5000); // Show confetti for 5 seconds
     }
 
     function simulateMatches() {
@@ -148,7 +175,7 @@ document.addEventListener('DOMContentLoaded', () => {
             matchTime.setMinutes(matchTime.getMinutes() + currentMatch * 3);
             document.getElementById(`time-${currentMatch}`).textContent = matchTime.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-            liveFeed.innerHTML = `Wedstrijd ${currentMatch + 1} tussen <strong><img src="images/${teamLogos[match.team1]}" alt="${match.team1}" class="team-logo">${match.team1}</strong> en <strong><img src="images/${teamLogos[match.team2]}" alt="${match.team2}" class="team-logo">${match.team2}</strong> begint nu op <a href="${match.fieldLink}" target="_blank">${match.field}</a>.`;
+            liveFeed.innerHTML = `Wedstrijd ${currentMatch + 1} tussen <strong><img src="images/${teamLogos[match.team1]}" alt="${match.team1}" class="team-logo">${match.team1}</strong> en <strong><img src="images/${teamLogos[match.team2]}" alt="${match.team2}" class="team-logo">${match.team2}</strong> begint nu in de <a href="${match.fieldLink}" target="_blank">${match.field}</a>.`;
             
             setTimeout(() => {
                 generateResult(match);
@@ -159,7 +186,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 updateStandings();
                 currentMatch++;
                 setTimeout(playNextMatch, 0);
-            }, 180000);
+            }, 60000);
         }
 
         playNextMatch();
