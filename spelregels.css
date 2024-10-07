@@ -1,0 +1,93 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2 {
+    color: #333;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th, td {
+    padding: 10px;
+    border: 1px solid #ddd;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+#live-updates {
+    background: #fff;
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.live-indicator {
+    color: red;
+    font-weight: bold;
+}
+
+.confetti {
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.5);
+    animation: confetti-fall 5s infinite linear;
+}
+
+@keyframes confetti-fall {
+    from {
+        opacity: 0.5;
+        transform: translateY(0);
+    }
+    to {
+        opacity: 0;
+        transform: translateY(100vh);
+    }
+}
+
+/* General styles for the standings table */
+#team-standings {
+    width: 100%; /* Full width of the parent */
+    border-collapse: collapse; /* Collapse borders for a cleaner look */
+}
+
+/* Align the ranking numbers */
+.ranking {
+    width: 50px; /* Fixed width for ranking */
+    text-align: center; /* Center align the text */
+}
+
+/* Styles for team information */
+.team-info {
+    display: flex; /* Use flexbox for logo and text alignment */
+    align-items: center; /* Center items vertically */
+}
+
+
+.team-logo {
+    width: 30px;
+    height: 30px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+
+/* Padding for table cells */
+#team-standings td {
+    padding: 10px; /* Add some padding for better spacing */
+    text-align: left; /* Align text to the left */
+}
+
+/* Optional: Add hover effect on rows */
+#team-standings tr:hover {
+    background-color: #f0f0f0; /* Light grey on hover */
+}

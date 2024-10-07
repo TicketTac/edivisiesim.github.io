@@ -14,7 +14,7 @@
     <header>
         <nav>
             <ul class="nav__links">
-                <li><a href="index.html">Edivsie Sim</a></li>
+                <li><a href="index.html">Edivisie Sim</a></li>
                 <li><a href="spelregels.html">Spelregels</a></li>
             </ul>
         </nav>
@@ -26,50 +26,23 @@
             <a href="spelregels.html">Spelregels</a>
         </div>
     </div>
-    <h1>Match Simulation</h1>
-    <h2>Live Updates</h2>
-    <div id="live-updates">
-        <!-- Live updates will be displayed here -->
-    </div>
-    <h2>Team Standings</h2>
-    <table id="team-standings">
-        <thead>
-            <tr>
-                <th>Standing</th>
-                <th>Team Name</th>
-                <th>Gewonnen</th>
-                <th>Gelijk</th>
-                <th>Verloren</th>
-                <th>Punten</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Standings will be dynamically generated here -->
-        </tbody>
-    </table>
-    <h2>Wedstrijd Schema</h2>
-    <table id="match-schedule">
-        <thead>
-            <tr>
-                <th>Wedstrijd</th>
-                <th>Team 1</th>
-                <th>Team 2</th>
-                <th>Locatie</th>
-                <th>Tijd</th>
-                <th>Resultaat</th>
-            </tr>
-        </thead>
-        <tbody>
-            <!-- Matches will be dynamically generated here -->
-        </tbody>
-    </table>
+    <h1>Spelregels</h1>
+    <br>
+    <h3>Alle Spelregels</h3>
+    <p>1. Extra Speeltijd kan soms voorkomen.</p>
+    <p>2. Punten Systeem is als volg Winnen: 3 punten - Gelijkspelen 1 punt - Verloren 0 punten.</p>
+    <p>3. Thuis club heeft 2,5% extra kans om te winnen vanwege hun eigen stadium en veld.</p>
+    <br>
+    <p>Dit is een simulatie van de Eredivsie teams met de huidige selectie van September 2024.</p>
+    <br>
+    <button class="button-85" role="button"><a href="index.html">Ga terug naar de simulatie</a></button>
 
     <div id="confetti" style="display: none; position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none;">
         <div class="confetti"></div>
     </div>
     <div id="winner-message" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background-color: rgba(255, 255, 255, 0.8); padding: 20px; border-radius: 10px; z-index: 1000;"></div>
     
-    <script src="script.js"></script>
+    <script src="spelregels.js"></script>
     <script type="text/javascript" src="mobile.js"></script>
 </body>
 </html>
